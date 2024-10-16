@@ -1,14 +1,12 @@
 package com.example.Weather;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import javax.validation.constraints.NotBlank;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/weather")
 public class WeatherController {
-
     private final WeatherService weatherService;
 
     @Autowired
@@ -16,17 +14,19 @@ public class WeatherController {
         this.weatherService = weatherService;
     }
 
-    // GET endpoint to fetch weather for a specific city
-    @GetMapping("/weather/{city}")
-    public String getWeather(@PathVariable @NotBlank String city) {
+    @GetMapping("/{city}")
+    public String getWeather(@PathVariable String city) {
         return weatherService.getWeather(city);
     }
 
-    // POST endpoint to update weather for a city
-    @PostMapping("/weather/{city}")
-    public String updateWeather(@PathVariable @NotBlank String city,
-                                @RequestParam(required = false) String condition) {
-        weatherService.updateWeatherData(city, condition);
+    @PostMapping("/{city}")
+    public String updateWeather(@PathVariable String city, @RequestParam int temperature) {
+        weatherService.updateWeather(city, temperature);
         return "Weather updated for " + city;
+    }
+
+    @GetMapping
+    public Map<String, String> getAllWeather() {
+        return weatherService.getAllWeatherData();
     }
 }

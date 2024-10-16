@@ -1,29 +1,24 @@
 package com.example.Weather;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class WeatherRecord {
     private String city;
+    private int temperature;
     private String condition;
 
-    // Constructor to initialize fields
-    public WeatherRecord(String city, String condition) {
+    public void initialize(String city, int temperature) {
         this.city = city;
-        this.condition = condition;
+        this.temperature = temperature;
     }
 
     // Getters and setters
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCondition() {
-        return condition;
-    }
-
-    public void setCondition(String condition) {
-        this.condition = condition;
-    }
+    public String getCity() { return city; }
+    public void setCity(String city) { this.city = city; }
+    public int getTemperature() { return temperature; }
+    public void setTemperature(int temperature) { this.temperature = temperature; }
+    public String getCondition() { return condition; }
+    public void setCondition(String condition) { this.condition = condition; }
 }
+
