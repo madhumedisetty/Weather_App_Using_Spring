@@ -46,8 +46,8 @@ This Weather API application allows users to manage weather records for differen
 4. Use Postman to test the API endpoints.
 
 ## Flowchart
-Here's a flowchart to visualize the process of adding a weather record:
 
-![image](https://github.com/user-attachments/assets/0a5f9966-8dd2-4b07-a884-40470161e30a)
+![image](https://github.com/user-attachments/assets/c796dc94-a0e6-4fa9-8447-2c8cce26d758)
+
 
 
