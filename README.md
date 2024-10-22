@@ -1,85 +1,75 @@
-# Weather API Application
+# Weather Application
 
-A simple Spring Boot application to manage weather data for cities using REST endpoints. It allows fetching and updating weather conditions for specific cities.
+## Overview
+This is a simple **Spring Boot-based Weather Application** that provides weather information for various cities. It allows you to update and retrieve weather conditions based on temperature inputs. The application demonstrates the use of **Spring Configuration Properties**, **Service Layer logic**, and **Dependency Injection** using `ApplicationContext`.
+
+---
+![Screenshot 2024-10-16 154547](https://github.com/user-attachments/assets/c1810ba0-61ab-4700-878b-d694ecf5ec92)
+
 
 ## Features
-- **GET** weather data for a city.
-- **POST** to update weather data for a city with optional condition.
-- In-memory storage of weather data using a `Map`.
-- Default weather condition can be configured via `application.properties`.
+- **Get weather for a city:** Returns the current temperature and condition for a specified city.
+- **Update weather for a city:** Updates the temperature and automatically adjusts the weather condition (Cold, Pleasant, or Hot).
+- **Fetch all weather data:** Retrieve the weather details for all cities in the system.
 
-## Prerequisites
-- **Java 17+** installed
-- **Maven** installed
-- **Spring Boot** framework
+---
 
-## Getting Started
+## API Endpoints
+1. **Get Weather for a City**  
+   **`GET /api/weather/{city}`**  
+   **Response Example:**  
+   ```
+   The temperature in New York is 22°C. Condition: Pleasant
+   ```
 
-### 1. Clone the Repository
-```bash
-git clone <repository-url>
-cd <repository-directory>
-```
+2. **Update Weather for a City**  
+   **`POST /api/weather/{city}?temperature={temperature}`**  
+   **Response Example:**  
+   ```
+   Weather updated for New York
+   ```
 
-### 2. Build and Run the Application
-```bash
-mvn clean install
-mvn spring-boot:run
-```
+3. **Get All Weather Data**  
+   **`GET /api/weather`**  
+   **Response Example:**  
+   ```
+   {
+     "New York": "22°C, Pleasant",
+     "London": "15°C, Pleasant"
+   }
+   ```
 
-### 3. API Endpoints
+---
 
-#### GET Weather for a City
-Fetch weather data for a specific city.
-
-- **Endpoint**: `/api/weather/{city}`
-- **Method**: `GET`
-- **Example**:
-  ```bash
-  curl http://localhost:8080/api/weather/NewYork
-  ```
-
-#### POST Update Weather for a City
-Update weather data for a specific city with an optional condition.
-
-- **Endpoint**: `/api/weather/{city}`
-- **Method**: `POST`
-- **Query Param**: `condition` (Optional)
-- **Example**:
-  ```bash
-  curl -X POST "http://localhost:8080/api/weather/NewYork?condition=Sunny"
-  ```
-
-### 4. Configuration
-You can set a **default weather condition** in the `application.properties` file.
+## Configuration
+Modify weather settings in the **`application.properties`** file.
 
 ```properties
-weather.default-condition=Cloudy
+weather.default-condition=Moderate
+weather.city-temperatures.new-york.min=10
+weather.city-temperatures.new-york.max=25
+weather.city-temperatures.london.min=5
+weather.city-temperatures.london.max=20
+weather.city-temperatures.tokyo.min=15
+weather.city-temperatures.tokyo.max=30
 ```
 
-### 5. Example Response
-For GET `/api/weather/NewYork`:
+---
 
-```
-Sunny
-```
+## Explanation of `ApplicationContext.getBean()`
+Instead of manually creating `WeatherRecord` objects using the `new` keyword, this application utilizes **Spring's `ApplicationContext`** to fetch beans. This ensures that the instances are managed by Spring, improving **scalability** and **maintainability**.
 
-For POST `/api/weather/NewYork?condition=Rainy`:
+---
 
-```
-Weather updated for NewYork
-```
+## How to Run
+1. Clone the repository.
+2. Run `mvn spring-boot:run` to start the application.
+3. Access the API at `http://localhost:8080/api/weather`.
 
-### 6. Project Structure
-```
-src
-├── main
-│   ├── java/com/example/demo
-│   │   ├── WeatherApiApplication.java  # Main class to run the application
-│   │   ├── WeatherConfig.java          # Configuration for default conditions
-│   │   ├── WeatherController.java      # REST Controller handling API endpoints
-│   │   ├── WeatherService.java         # Service class for weather logic
-│   │   └── WeatherRecord.java          # POJO class for weather data
-│   └── resources
-│       └── application.properties      # Configuration properties
-```
+---
+
+## Technologies Used
+- **Spring Boot**
+- **Spring Configuration Properties**
+- **Java 11+**
+- **Maven**
