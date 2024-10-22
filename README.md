@@ -1,53 +1,47 @@
-# Weather API Application
+# Weather Application
 
 ## Overview
-This Weather API application allows users to manage weather records for different cities. Users can create, retrieve, and validate weather data, ensuring that the entries conform to specified conditions.
+The Weather Application is a web-based application that allows users to retrieve, create, update, and delete weather records. It provides functionalities to log user preferences and fetch weather data based on user input.
 
 ## Features
-- Add new weather records.
-- Retrieve all weather records or by specific city.
-- Validate entries based on temperature and weather conditions.
+- Retrieve all weather records.
+- Fetch weather data for a specific city.
+- Create new weather records.
+- Update existing weather records.
+- Delete weather records.
+- Log user preferences for recent city searches.
 
 ## Technologies Used
-- Java
-- Spring Boot
-- JPA/Hibernate
-- Postman for API testing
+- **Backend**: [Node.js](https://nodejs.org/) (or your preferred backend framework)
+- **Database**: [MongoDB](https://www.mongodb.com/) (or your preferred database)
+- **Frontend**: [React](https://reactjs.org/) (or your preferred frontend framework)
 
 ## API Endpoints
-### 1. Create Weather Record
-- **Method:** POST
-- **URL:** `/api/weather/create`
-- **Request Body:**
-  ```json
-  {
-      "city": "CityName",
-      "temperature": TemperatureValue,
-      "weatherCondition": "sunny|cloudy|rainy|snowy"
-  }
-  ```
+- `GET /api/weather/all`: Retrieve all weather records.
+- `GET /api/weather/{city}`: Fetch weather data for a specific city.
+- `POST /api/weather/create`: Create a new weather record.
+- `PUT /api/weather/{city}`: Update an existing weather record.
+- `DELETE /api/weather/{city}`: Delete a weather record.
 
-### 2. Get All Weather Records
-- **Method:** GET
-- **URL:** `/api/weather/all`
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/madhu_medisetty/weather-app.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd weather-app
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Set up your database and update the configuration files as necessary.
+5. Start the application:
+   ```bash
+   npm start
+   ```
 
-### 3. Get Weather by City
-- **Method:** GET
-- **URL:** `/api/weather/{city}`
-
-## Validation Rules
-- Snowy weather is not allowed when the temperature is above 30°C.
-- Sunny weather is not allowed when the temperature is below 0°C.
-
-## Running the Application
-1. Clone the repository.
-2. Navigate to the project directory.
-3. Run the application using `mvn spring-boot:run`.
-4. Use Postman to test the API endpoints.
-
-## Flowchart
-
-![image](https://github.com/user-attachments/assets/c796dc94-a0e6-4fa9-8447-2c8cce26d758)
-
-
-
+## Usage
+- Access the application through your web browser at `http://localhost:3000` (or the specified port).
+- Use the provided API endpoints to interact with the weather records.
