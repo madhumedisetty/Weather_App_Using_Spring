@@ -11,11 +11,6 @@ The Weather Application is a web-based application that allows users to retrieve
 - Delete weather records.
 - Log user preferences for recent city searches.
 
-## Technologies Used
-- **Backend**: [Node.js](https://nodejs.org/) (or your preferred backend framework)
-- **Database**: [MongoDB](https://www.mongodb.com/) (or your preferred database)
-- **Frontend**: [React](https://reactjs.org/) (or your preferred frontend framework)
-
 ## API Endpoints
 - `GET /api/weather/all`: Retrieve all weather records.
 - `GET /api/weather/{city}`: Fetch weather data for a specific city.
