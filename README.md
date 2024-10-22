@@ -26,7 +26,7 @@ The Weather Application is a web-based application that allows users to retrieve
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/madhu_medisetty/weather-app.git
+   git clone https://github.com/madhumedisetty/Weather_App_Using_Spring.git
    ```
 2. Navigate to the project directory:
    ```bash
