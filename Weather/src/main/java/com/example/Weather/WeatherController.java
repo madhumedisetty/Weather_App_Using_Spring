@@ -36,29 +36,22 @@ public class WeatherController {
         return weatherService.addWeather(weatherRequestDTO);
     }
 
-    // Uncomment if you want to implement update and delete methods
-    /*
-    @PutMapping("/{id}")
-    public ResponseEntity<WeatherRecord> updateWeather(@PathVariable Long id, @RequestBody WeatherRecord weatherRecord) {
-        if (!weatherService.getAllWeather().stream().anyMatch(weather -> weather.getId().equals(id))) {
-            return ResponseEntity.notFound().build();
-        }
-        weatherRecord.setId(id);
-        return ResponseEntity.ok(weatherService.updateWeather(weatherRecord));
+    @PutMapping("/{city}")
+    public ResponseEntity<WeatherRecord> updateWeather(
+            @PathVariable @NotBlank String city,
+            @Valid @RequestBody WeatherRequestDTO weatherRequestDTO) {
+        WeatherRecord updatedRecord = weatherService.updateWeather(city, weatherRequestDTO);
+        return ResponseEntity.ok(updatedRecord);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteWeather(@PathVariable Long id) {
-        if (!weatherService.getAllWeather().stream().anyMatch(weather -> weather.getId().equals(id))) {
-            return ResponseEntity.notFound().build();
-        }
-        weatherService.deleteWeather(id);
+    @DeleteMapping("/{city}")
+    public ResponseEntity<Void> deleteWeather(@PathVariable @NotBlank String city) {
+        weatherService.deleteWeather(city);
         return ResponseEntity.noContent().build();
     }
-    */
-    @ExceptionHandler(WeatherValidationException.class)
-public ResponseEntity<String> handleValidationException(WeatherValidationException ex) {
-    return ResponseEntity.badRequest().body(ex.getMessage());
-}
 
+    @ExceptionHandler(WeatherValidationException.class)
+    public ResponseEntity<String> handleValidationException(WeatherValidationException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
 }

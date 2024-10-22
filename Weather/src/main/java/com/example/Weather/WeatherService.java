@@ -6,7 +6,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 @Service
 @Validated
 public class WeatherService {
@@ -24,7 +23,8 @@ public class WeatherService {
     }
 
     public WeatherRecord getWeatherByCity(String city) {
-        return weatherRepository.findByCity(city).orElseThrow(() -> new RuntimeException("City not found"));
+        return weatherRepository.findByCity(city)
+                .orElseThrow(() -> new RuntimeException("City not found"));
     }
 
     private WeatherRecord convertToEntity(WeatherRequestDTO weatherRequestDTO) {
@@ -41,15 +41,25 @@ public class WeatherService {
         WeatherRecord weatherRecord = convertToEntity(weatherRequestDTO);
         return weatherRepository.save(weatherRecord);
     }
-    /* 
-     * public void deleteWeather(Long id) {
-        weatherRepository.deleteById(id);
+
+    @Transactional
+    public WeatherRecord updateWeather(String city, WeatherRequestDTO weatherRequestDTO) {
+        WeatherRecord existingRecord = weatherRepository.findByCity(city)
+                .orElseThrow(() -> new RuntimeException("City not found"));
+
+        weatherValidator.validateWeatherCondition(weatherRequestDTO);
+
+        existingRecord.setTemperature(weatherRequestDTO.getTemperature());
+        existingRecord.setWeatherCondition(weatherRequestDTO.getWeatherCondition());
+
+        return weatherRepository.save(existingRecord);
     }
-    */
 
-    
+    @Transactional
+    public void deleteWeather(String city) {
+        WeatherRecord weatherRecord = weatherRepository.findByCity(city)
+                .orElseThrow(() -> new RuntimeException("City not found"));
 
-    public WeatherRecord updateWeather(WeatherRecord weatherRecord) {
-        return weatherRepository.save(weatherRecord);
+        weatherRepository.delete(weatherRecord);
     }
 }
