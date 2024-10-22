@@ -1,24 +1,38 @@
 package com.example.Weather;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-import org.springframework.stereotype.Component;
-
-@Component
+@Entity
+@Table(name = "weather_records")
 public class WeatherRecord {
+    @Id
     private String city;
     private int temperature;
-    private String condition;
+    private String weatherCondition;
 
-    public void initialize(String city, int temperature) {
+    // Getters and setters
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
         this.city = city;
+    }
+
+    public int getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(int temperature) {
         this.temperature = temperature;
     }
 
-    // Getters and setters
-    public String getCity() { return city; }
-    public void setCity(String city) { this.city = city; }
-    public int getTemperature() { return temperature; }
-    public void setTemperature(int temperature) { this.temperature = temperature; }
-    public String getCondition() { return condition; }
-    public void setCondition(String condition) { this.condition = condition; }
-}
+    public String getWeatherCondition() {
+        return weatherCondition;
+    }
 
+    public void setWeatherCondition(String weatherCondition) {
+        this.weatherCondition = weatherCondition;
+    }
+}
