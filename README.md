@@ -1,7 +1,3 @@
-Here's a concise README file for your weather application, along with a flowchart to illustrate the process.
-
-### README.md
-
 # Weather API Application
 
 ## Overview
@@ -52,24 +48,6 @@ This Weather API application allows users to manage weather records for differen
 ## Flowchart
 Here's a flowchart to visualize the process of adding a weather record:
 
-````artifact
-id: weather-api-flowchart
-name: Weather API Flowchart
-type: mermaid
-content: |-
-  graph TD;
-      A[Start] --> B[User submits weather data];
-      B --> C{Is data valid?};
-      C -->|Yes| D[Add record to database];
-      C -->|No| E[Return validation error];
-      D --> F[Record added successfully];
-      F --> G[End];
-      E --> G;
-````
+![image](https://github.com/user-attachments/assets/0a5f9966-8dd2-4b07-a884-40470161e30a)
 
-## Conclusion
-This Weather API application provides an easy way to manage weather records while enforcing validation rules to ensure data integrity. For any issues or feature requests, please open an issue in this repository.
 
----
-
-Feel free to modify any part of the README to better suit your application's specifics!
